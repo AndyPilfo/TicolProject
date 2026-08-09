@@ -1,0 +1,15 @@
+**/node_modules
+**/.DS_Store
+**/dist
+**/.vite
+**/.env.local
+**/.env.production.local
+mongo_data
+.env
+.env.*
+backend/.env
+frontend/.env
+
+!.env.example
+!backend/.env.example
+!frontend/.env.example
