@@ -3,6 +3,7 @@ import rateLimit from "express-rate-limit";
 import { authRequired } from "../middleware/authRequired.js";
 import { getChatConfig, sendChatMessage } from "../controllers/chat.controller.js";
 import { conversationsRouter } from "./conversations.routes.js";
+import { asyncHandler } from "../utils/asyncHandler.js";
 
 export const chatRouter = Router();
 const chatMessageLimiter = rateLimit({
@@ -14,5 +15,5 @@ const chatMessageLimiter = rateLimit({
 
 chatRouter.use(authRequired);
 chatRouter.use("/conversations", conversationsRouter);
-chatRouter.get("/config", getChatConfig);
-chatRouter.post("/", chatMessageLimiter, sendChatMessage);
+chatRouter.get("/config", asyncHandler(getChatConfig));
+chatRouter.post("/", chatMessageLimiter, asyncHandler(sendChatMessage));
