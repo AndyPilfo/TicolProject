@@ -62,28 +62,28 @@ export function Footer() {
 
             <div className="mt-4 flex items-center gap-3">
               <a
-                className="inline-flex items-center justify-center rounded-xl border border-[#f8ecd2]/20 bg-[#f8ecd2]/10 px-3 py-2 text-[#f8ecd2] transition hover:bg-[#f8ecd2]/20"
+                className="inline-flex min-h-11 min-w-11 items-center justify-center rounded-xl border border-[#f8ecd2]/20 bg-[#f8ecd2]/10 px-3 py-2 text-[#f8ecd2] transition hover:bg-[#f8ecd2]/20"
                 href="https://www.instagram.com/itssss_bck4?igsh=Y2VxNDhmdDlteXQ3"
                 aria-label="Instagram"
               >
                 <Instagram className="h-4 w-4" />
               </a>
               <a
-                className="inline-flex items-center justify-center rounded-xl border border-[#f8ecd2]/20 bg-[#f8ecd2]/10 px-3 py-2 text-[#f8ecd2] transition hover:bg-[#f8ecd2]/20"
+                className="inline-flex min-h-11 min-w-11 items-center justify-center rounded-xl border border-[#f8ecd2]/20 bg-[#f8ecd2]/10 px-3 py-2 text-[#f8ecd2] transition hover:bg-[#f8ecd2]/20"
                 href="https://www.linkedin.com/in/andy-beckford-guerrero-786ba5210"
                 aria-label="LinkedIn"
               >
                 <Linkedin className="h-4 w-4" />
               </a>
               <a
-                className="inline-flex items-center justify-center rounded-xl border border-[#f8ecd2]/20 bg-[#f8ecd2]/10 px-3 py-2 text-[#f8ecd2] transition hover:bg-[#f8ecd2]/20"
+                className="inline-flex min-h-11 min-w-11 items-center justify-center rounded-xl border border-[#f8ecd2]/20 bg-[#f8ecd2]/10 px-3 py-2 text-[#f8ecd2] transition hover:bg-[#f8ecd2]/20"
                 href="https://github.com/AndyPilfo"
                 aria-label="GitHub"
               >
                 <Github className="h-4 w-4" />
               </a>
               <a
-                className="inline-flex items-center justify-center rounded-xl border border-[#f8ecd2]/20 bg-[#f8ecd2]/10 px-3 py-2 text-[#f8ecd2] transition hover:bg-[#f8ecd2]/20"
+                className="inline-flex min-h-11 min-w-11 items-center justify-center rounded-xl border border-[#f8ecd2]/20 bg-[#f8ecd2]/10 px-3 py-2 text-[#f8ecd2] transition hover:bg-[#f8ecd2]/20"
                 href="#"
                 aria-label="Facebook"
               >

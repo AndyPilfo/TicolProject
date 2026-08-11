@@ -128,7 +128,7 @@ export function FavoritesPage() {
 
         <button
           type="button"
-          className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-black/10 bg-white/80 text-black/70 shadow-sm transition hover:bg-white focus:outline-none focus:ring-2 focus:ring-brandOrange/30 dark:border-white/10 dark:bg-white/10 dark:text-white/80 dark:hover:bg-white/15 lg:hidden"
+          className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-black/10 bg-white/80 text-black/70 shadow-sm transition hover:bg-white focus:outline-none focus:ring-2 focus:ring-brandOrange/30 dark:border-white/10 dark:bg-white/10 dark:text-white/80 dark:hover:bg-white/15 lg:hidden"
           onClick={() => setSidebarCompact((current) => !current)}
           aria-label={sidebarCompact ? t("favorites.expandSidebar") : t("favorites.compactSidebar")}
           title={sidebarCompact ? t("favorites.expandSidebar") : t("favorites.compactSidebar")}
@@ -329,7 +329,7 @@ export function FavoritesPage() {
                   <div className="flex items-center gap-2">
                     <button
                       type="button"
-                      className="page-filter-toggle inline-flex items-center gap-2 rounded-full border border-black/5 bg-black/5 px-4 py-2 text-sm font-semibold text-black/65 dark:border-white/10 dark:bg-white/5 dark:text-white/70 lg:hidden"
+                      className="page-filter-toggle inline-flex min-h-11 items-center gap-2 rounded-full border border-black/5 bg-black/5 px-4 py-2 text-sm font-semibold text-black/65 dark:border-white/10 dark:bg-white/5 dark:text-white/70 lg:hidden"
                       onClick={() => setMobileFiltersOpen(true)}
                     >
                       <Filter className="h-4 w-4" />
@@ -447,7 +447,7 @@ export function FavoritesPage() {
         open={mobileFiltersOpen}
         title={t("common.filters")}
         onClose={() => setMobileFiltersOpen(false)}
-        widthClassName="w-[94vw] max-w-md"
+        widthClassName="w-full max-w-md"
       >
         <div className="flex h-full min-h-0 flex-col p-4">
           <div className="flex-1 min-h-0 overflow-y-auto rounded-3xl border border-black/5 bg-white/80 p-4 shadow-sm dark:border-white/10 dark:bg-white/5">

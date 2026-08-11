@@ -57,8 +57,8 @@ export function AuthModal() {
   }
 
   return (
-    <div className="fixed inset-0 z-[60] grid place-items-center bg-black/60 p-4 backdrop-blur-sm">
-      <div className="card w-full max-w-md p-6">
+    <div className="fixed inset-0 z-[60] grid place-items-center overflow-y-auto bg-black/60 p-2 backdrop-blur-sm sm:p-4">
+      <div className="card max-h-[calc(100dvh-1rem)] w-full max-w-md overflow-y-auto p-4 sm:max-h-[calc(100dvh-2rem)] sm:p-6">
         <div className="flex items-start justify-between gap-4">
           <div>
             <div className="text-lg font-bold">{title}</div>
@@ -66,21 +66,26 @@ export function AuthModal() {
               {authModal.reason || t("auth.reasonDefault")}
             </div>
           </div>
-          <button className="btn-secondary" onClick={closeAuthModal} aria-label={t("common.close")}>
+          <button
+            type="button"
+            className="btn-secondary h-11 w-11 shrink-0 p-0"
+            onClick={closeAuthModal}
+            aria-label={t("common.close")}
+          >
             <X className="h-4 w-4" />
           </button>
         </div>
 
         <div className="mt-5 grid grid-cols-2 gap-2">
           <button
-            className={mode === "login" ? "btn-primary" : "btn-secondary"}
+            className={mode === "login" ? "btn-primary min-h-11" : "btn-secondary min-h-11"}
             onClick={() => setMode("login")}
             type="button"
           >
             {t("auth.loginTitle")}
           </button>
           <button
-            className={mode === "register" ? "btn-primary" : "btn-secondary"}
+            className={mode === "register" ? "btn-primary min-h-11" : "btn-secondary min-h-11"}
             onClick={() => setMode("register")}
             type="button"
           >
@@ -128,7 +133,7 @@ export function AuthModal() {
               />
               <button
                 type="button"
-                className="absolute right-2 top-1/2 -translate-y-1/2 rounded-lg px-2 py-2 text-black/60 hover:bg-black/5 dark:text-white/70 dark:hover:bg-white/10"
+                className="absolute right-1.5 top-1/2 inline-flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-lg text-black/60 hover:bg-black/5 dark:text-white/70 dark:hover:bg-white/10"
                 onClick={() => setShowPassword((current) => !current)}
                 aria-label={showPassword ? t("common.hidePassword") : t("common.showPassword")}
               >
@@ -139,7 +144,7 @@ export function AuthModal() {
 
           {error && <div className="text-sm text-red-600 dark:text-red-400">{error}</div>}
 
-          <button className="btn-orange w-full" disabled={busy} type="submit">
+          <button className="btn-orange min-h-11 w-full" disabled={busy} type="submit">
             {busy ? t("common.loading") : mode === "login" ? t("auth.loginButton") : t("auth.registerButton")}
           </button>
         </form>

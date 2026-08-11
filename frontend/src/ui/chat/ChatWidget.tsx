@@ -427,10 +427,10 @@ export function ChatWidget() {
       >
         <div className="absolute inset-0 bg-transparent backdrop-blur-sm" onMouseDown={handleBackdropClick} />
 
-        <div className="absolute inset-0 flex justify-end p-3 sm:p-4">
+        <div className="absolute inset-0 flex justify-end p-2 sm:p-4">
           <div
             className={clsx(
-              "h-[calc(100vh-1.5rem)] w-[calc(100vw-1.5rem)] overflow-hidden rounded-[32px] transition-[transform,opacity] duration-200 sm:h-[calc(100vh-2rem)] sm:w-[72vw] lg:w-[48vw] xl:w-[42rem]",
+              "h-full w-full overflow-hidden rounded-[28px] transition-[transform,opacity] duration-200 sm:w-[72vw] sm:rounded-[32px] lg:w-[48vw] xl:w-[42rem]",
               chatWidgetOpen ? "translate-x-0 opacity-100" : "translate-x-4 opacity-0"
             )}
             onMouseDown={(event) => event.stopPropagation()}

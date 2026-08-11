@@ -82,14 +82,14 @@ export function ConfirmModal({
   if (!open) return null;
 
   return (
-    <div className="fixed inset-0 z-[60] grid place-items-center bg-black/50 p-4 backdrop-blur-sm">
+    <div className="fixed inset-0 z-[60] grid place-items-center overflow-y-auto bg-black/50 p-2 backdrop-blur-sm sm:p-4">
       <div
         ref={panelRef}
         role="dialog"
         aria-modal="true"
         aria-labelledby={titleId}
         aria-describedby={descriptionId}
-        className="card w-full max-w-md p-6"
+        className="card max-h-[calc(100dvh-1rem)] w-full max-w-md overflow-y-auto p-4 sm:max-h-[calc(100dvh-2rem)] sm:p-6"
       >
         <div className="flex items-start justify-between gap-4">
           <div>
@@ -103,7 +103,7 @@ export function ConfirmModal({
 
           <button
             type="button"
-            className="btn-secondary h-10 w-10 shrink-0 rounded-full p-0"
+            className="btn-secondary h-11 w-11 shrink-0 rounded-full p-0"
             onClick={onCancel}
             aria-label={cancelLabel}
           >
@@ -111,11 +111,11 @@ export function ConfirmModal({
           </button>
         </div>
 
-        <div className="mt-6 flex gap-2">
+        <div className="mt-6 flex flex-col-reverse gap-2 sm:flex-row">
           <button
             ref={cancelButtonRef}
             type="button"
-            className="btn-secondary flex-1"
+            className="btn-secondary min-h-11 flex-1"
             onClick={onCancel}
             disabled={busy}
           >
@@ -123,7 +123,7 @@ export function ConfirmModal({
           </button>
           <button
             type="button"
-            className={clsx("flex-1", confirmButtonClassName || "btn-orange")}
+            className={clsx("min-h-11 flex-1", confirmButtonClassName || "btn-orange")}
             onClick={() => void onConfirm()}
             disabled={busy}
           >

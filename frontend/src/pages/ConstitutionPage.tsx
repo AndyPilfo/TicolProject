@@ -111,7 +111,7 @@ export function ConstitutionPage() {
 
         <button
           type="button"
-          className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-black/10 bg-white/80 text-black/70 shadow-sm transition hover:bg-white focus:outline-none focus:ring-2 focus:ring-brandOrange/30 dark:border-white/10 dark:bg-white/10 dark:text-white/80 dark:hover:bg-white/15 lg:hidden"
+          className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-black/10 bg-white/80 text-black/70 shadow-sm transition hover:bg-white focus:outline-none focus:ring-2 focus:ring-brandOrange/30 dark:border-white/10 dark:bg-white/10 dark:text-white/80 dark:hover:bg-white/15 lg:hidden"
           onClick={() => setSidebarCompact((current) => !current)}
           aria-label={sidebarCompact ? t("constitution.expandFilters") : t("constitution.collapseFilters")}
           title={sidebarCompact ? t("constitution.expandFilters") : t("constitution.collapseFilters")}
@@ -303,7 +303,7 @@ export function ConstitutionPage() {
                 <div className="flex items-center gap-2">
                   <button
                     type="button"
-                    className="inline-flex items-center gap-2 rounded-full border border-black/5 bg-black/5 px-4 py-2 text-sm font-semibold text-black/65 dark:border-white/10 dark:bg-white/5 dark:text-white/70 lg:hidden"
+                    className="inline-flex min-h-11 items-center gap-2 rounded-full border border-black/5 bg-black/5 px-4 py-2 text-sm font-semibold text-black/65 dark:border-white/10 dark:bg-white/5 dark:text-white/70 lg:hidden"
                     onClick={() => setMobileFiltersOpen(true)}
                   >
                     <Filter className="h-4 w-4" />
@@ -354,7 +354,7 @@ export function ConstitutionPage() {
         open={mobileFiltersOpen}
         title={t("constitution.filters")}
         onClose={() => setMobileFiltersOpen(false)}
-        widthClassName="w-[94vw] max-w-md"
+        widthClassName="w-full max-w-md"
       >
         <div className="flex h-full min-h-0 flex-col p-4">
           <div className="flex-1 min-h-0 overflow-y-auto">

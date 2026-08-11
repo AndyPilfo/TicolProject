@@ -357,7 +357,7 @@ export function ChatPanel({ onClose, closeButtonRef }: ChatPanelProps) {
         <div className="flex items-center gap-2">
           <button
             type="button"
-            className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/20 bg-white/10 text-white transition hover:bg-white/20 focus:outline-none focus:ring-2 focus:ring-white/40 lg:hidden"
+            className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/20 bg-white/10 text-white transition hover:bg-white/20 focus:outline-none focus:ring-2 focus:ring-white/40 lg:hidden"
             onClick={() => setMobileHistoryOpen((current) => !current)}
             aria-label={mobileHistoryOpen ? t("chat.closeSessions") : t("chat.openSessions")}
             title={mobileHistoryOpen ? t("chat.closeSessions") : t("chat.openSessions")}
@@ -369,7 +369,7 @@ export function ChatPanel({ onClose, closeButtonRef }: ChatPanelProps) {
             <button
               ref={closeButtonRef}
               type="button"
-              className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/20 bg-white/10 text-white transition hover:bg-white/20 focus:outline-none focus:ring-2 focus:ring-white/40"
+              className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/20 bg-white/10 text-white transition hover:bg-white/20 focus:outline-none focus:ring-2 focus:ring-white/40"
               onClick={onClose}
               aria-label={t("chat.closeAssistant")}
               title={t("chat.closeAssistant")}
@@ -394,7 +394,7 @@ export function ChatPanel({ onClose, closeButtonRef }: ChatPanelProps) {
           <div className="flex items-center justify-between gap-2 border-b border-blue-200 px-4 py-3 lg:hidden dark:border-blue-900/70">
             <button
               type="button"
-              className="inline-flex items-center gap-2 rounded-full border border-black/10 bg-white px-3 py-2 text-xs font-semibold text-black/70 shadow-sm dark:border-white/10 dark:bg-[#1f1e1e] dark:text-white/75"
+              className="inline-flex min-h-11 items-center gap-2 rounded-full border border-black/10 bg-white px-3 py-2 text-xs font-semibold text-black/70 shadow-sm dark:border-white/10 dark:bg-[#1f1e1e] dark:text-white/75"
               onClick={() => setMobileHistoryOpen(true)}
             >
               <Menu className="h-3.5 w-3.5" />
@@ -403,7 +403,7 @@ export function ChatPanel({ onClose, closeButtonRef }: ChatPanelProps) {
 
             <button
               type="button"
-              className="inline-flex items-center gap-2 rounded-full bg-brandOrange px-3 py-2 text-xs font-semibold text-white shadow-sm transition hover:bg-[#e66c01] hover:shadow-md"
+              className="inline-flex min-h-11 items-center gap-2 rounded-full bg-brandOrange px-3 py-2 text-xs font-semibold text-white shadow-sm transition hover:bg-[#e66c01] hover:shadow-md"
               onClick={() => void handleNewConversation()}
             >
               <MessageSquarePlus className="h-3.5 w-3.5" />

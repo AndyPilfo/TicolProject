@@ -94,6 +94,7 @@ export function Navbar() {
   }, []);
 
   useEffect(() => {
+    setMenuOpen(false);
     setMobileNavOpen(false);
     setSectionsMenuOpen(false);
   }, [location.pathname]);
@@ -111,10 +112,14 @@ export function Navbar() {
       ref={headerRef}
       className="sticky top-0 z-40 border-b border-black/5 bg-white/80 backdrop-blur-lg dark:border-white/10 dark:bg-[#1f1e1e]/85"
     >
-      <div className="w-full px-3 py-3 sm:px-4 lg:px-6 2xl:px-8">
-        <div className="grid items-center gap-3 lg:grid-cols-[auto_minmax(0,1fr)_auto] lg:gap-4 2xl:gap-6">
-          <Link to="/" className="flex min-w-0 items-center gap-3 justify-self-start">
-            <img src="/logo-ticol.svg" alt={t("brand.title")} className="h-11 w-11 shrink-0 object-contain" />
+      <div className="w-full px-3 py-2.5 sm:px-4 sm:py-3 lg:px-6 2xl:px-8">
+        <div className="flex min-w-0 items-center justify-between gap-3 lg:grid lg:grid-cols-[auto_minmax(0,1fr)_auto] lg:gap-4 2xl:gap-6">
+          <Link to="/" className="flex min-w-0 items-center gap-2.5 justify-self-start sm:gap-3">
+            <img
+              src="/logo-ticol.svg"
+              alt={t("brand.title")}
+              className="h-10 w-10 shrink-0 object-contain sm:h-11 sm:w-11"
+            />
             <div className="min-w-0 leading-tight">
               <div className="truncate text-sm font-extrabold tracking-wide text-black dark:text-white">
                 {brandName}
@@ -148,24 +153,32 @@ export function Navbar() {
             </NavLink>
           </nav>
 
-          <div className="flex min-w-0 items-center justify-end gap-2 md:gap-3 justify-self-end">
+          <div className="flex min-w-0 items-center justify-end gap-2 justify-self-end md:gap-3">
             <button
               type="button"
               ref={mobileNavButtonRef}
-              className="btn-secondary inline-flex lg:hidden"
-              onClick={() => setMobileNavOpen((current) => !current)}
+              className="btn-secondary inline-flex h-11 w-11 shrink-0 p-0 lg:hidden"
+              onClick={() => {
+                setMobileNavOpen((current) => !current);
+                setMenuOpen(false);
+                setSectionsMenuOpen(false);
+              }}
               aria-haspopup="menu"
               aria-expanded={mobileNavOpen}
               aria-label={mobileNavOpen ? t("nav.closeMenu") : t("nav.openMenu")}
               >
-                {mobileNavOpen ? <X className="h-4 w-4" /> : <Menu className="h-4 w-4" />}
+                {mobileNavOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
               </button>
 
             <div className="relative hidden lg:block xl:hidden" ref={sectionsMenuRef}>
               <button
                 type="button"
-                className="btn-secondary inline-flex whitespace-nowrap"
-                onClick={() => setSectionsMenuOpen((current) => !current)}
+                className="btn-secondary inline-flex min-h-11 whitespace-nowrap"
+                onClick={() => {
+                  setSectionsMenuOpen((current) => !current);
+                  setMenuOpen(false);
+                  setMobileNavOpen(false);
+                }}
                 aria-haspopup="menu"
                 aria-expanded={sectionsMenuOpen}
                 aria-label={t("nav.sections")}
@@ -178,12 +191,12 @@ export function Navbar() {
               {sectionsMenuOpen && (
                 <div
                   role="menu"
-                  className="absolute right-0 mt-2 w-64 rounded-2xl border border-black/10 bg-white p-3 shadow-soft dark:border-white/10 dark:bg-[#232222]"
+                  className="fixed left-1/2 top-[calc(var(--navbar-height,4.5rem)+0.5rem)] z-[45] max-h-[calc(100dvh-var(--navbar-height,4.5rem)-1rem)] w-[calc(100%-1rem)] max-w-xs -translate-x-1/2 overflow-y-auto overscroll-contain rounded-2xl border border-black/10 bg-white p-3 shadow-soft dark:border-white/10 dark:bg-[#232222]"
                 >
                   <div className="grid gap-2">
                     <NavLink
                       to="/"
-                      className={({ isActive }) => clsx(navClass({ isActive }), "w-full justify-start")}
+                      className={({ isActive }) => clsx(navClass({ isActive }), "min-h-11 w-full justify-center text-center")}
                       onClick={() => setSectionsMenuOpen(false)}
                     >
                       <Home className="h-4 w-4" />
@@ -191,7 +204,7 @@ export function Navbar() {
                     </NavLink>
                     <NavLink
                       to="/constitution"
-                      className={({ isActive }) => clsx(navClass({ isActive }), "w-full justify-start")}
+                      className={({ isActive }) => clsx(navClass({ isActive }), "min-h-11 w-full justify-center text-center")}
                       onClick={() => setSectionsMenuOpen(false)}
                     >
                       <BookOpen className="h-4 w-4" />
@@ -199,7 +212,7 @@ export function Navbar() {
                     </NavLink>
                     <NavLink
                       to="/chatbot"
-                      className={({ isActive }) => clsx(navClass({ isActive }), "w-full justify-start")}
+                      className={({ isActive }) => clsx(navClass({ isActive }), "min-h-11 w-full justify-center text-center")}
                       onClick={() => setSectionsMenuOpen(false)}
                     >
                       <MessageSquare className="h-4 w-4" />
@@ -207,7 +220,7 @@ export function Navbar() {
                     </NavLink>
                     <NavLink
                       to="/favorites"
-                      className={({ isActive }) => clsx(navClass({ isActive }), "w-full justify-start")}
+                      className={({ isActive }) => clsx(navClass({ isActive }), "min-h-11 w-full justify-center text-center")}
                       onClick={() => setSectionsMenuOpen(false)}
                     >
                       <Heart className="h-4 w-4" />
@@ -215,7 +228,7 @@ export function Navbar() {
                     </NavLink>
                     <NavLink
                       to="/about"
-                      className={({ isActive }) => clsx(navClass({ isActive }), "w-full justify-start")}
+                      className={({ isActive }) => clsx(navClass({ isActive }), "min-h-11 w-full justify-center text-center")}
                       onClick={() => setSectionsMenuOpen(false)}
                     >
                       <Info className="h-4 w-4" />
@@ -229,8 +242,12 @@ export function Navbar() {
             <div className="relative" ref={menuRef}>
               <button
                 type="button"
-                className="btn-secondary"
-                onClick={() => setMenuOpen((current) => !current)}
+                className="btn-secondary hidden min-h-11 lg:inline-flex"
+                onClick={() => {
+                  setMenuOpen((current) => !current);
+                  setSectionsMenuOpen(false);
+                  setMobileNavOpen(false);
+                }}
                 aria-haspopup="menu"
                 aria-expanded={menuOpen}
                 aria-label={t("nav.accessibility")}
@@ -243,7 +260,7 @@ export function Navbar() {
               {menuOpen && (
                 <div
                   role="menu"
-                  className="absolute right-0 mt-2 w-[22rem] rounded-2xl border border-black/10 bg-white p-3 shadow-soft dark:border-white/10 dark:bg-[#232222]"
+                  className="fixed left-1/2 top-[calc(var(--navbar-height,4.5rem)+0.5rem)] z-[45] max-h-[calc(100dvh-var(--navbar-height,4.5rem)-1rem)] w-[calc(100%-1rem)] max-w-[22rem] -translate-x-1/2 overflow-y-auto overscroll-contain rounded-2xl border border-black/10 bg-white p-3 shadow-soft dark:border-white/10 dark:bg-[#232222]"
                 >
                   <div className="space-y-3">
                     <div className="rounded-xl border border-black/5 bg-black/5 p-3 dark:border-white/10 dark:bg-white/5">
@@ -265,13 +282,11 @@ export function Navbar() {
                           type="button"
                           role="switch"
                           aria-checked={theme === "dark"}
-                          className={clsx(
-                            "relative inline-flex h-6 w-11 items-center rounded-full border transition",
-                            theme === "dark"
-                              ? "border-brandOrange/30 bg-brandOrange"
-                              : "border-black/10 bg-black/20 dark:border-white/15 dark:bg-white/20"
-                          )}
-                          onClick={toggleTheme}
+                          className="inline-flex h-11 w-14 shrink-0 items-center justify-center rounded-xl transition hover:bg-black/5 dark:hover:bg-white/10"
+                          onClick={() => {
+                            toggleTheme();
+                            setMenuOpen(false);
+                          }}
                           aria-label={theme === "dark" ? t("common.lightMode") : t("common.darkMode")}
                         >
                           <span className="sr-only">
@@ -279,10 +294,19 @@ export function Navbar() {
                           </span>
                           <span
                             className={clsx(
-                              "inline-block h-5 w-5 rounded-full bg-white shadow-soft transition-transform",
-                              theme === "dark" ? "translate-x-5" : "translate-x-1"
+                              "relative inline-flex h-6 w-11 items-center rounded-full border transition",
+                              theme === "dark"
+                                ? "border-brandOrange/30 bg-brandOrange"
+                                : "border-black/10 bg-black/20 dark:border-white/15 dark:bg-white/20"
                             )}
-                          />
+                          >
+                            <span
+                              className={clsx(
+                                "inline-block h-5 w-5 rounded-full bg-white shadow-soft transition-transform",
+                                theme === "dark" ? "translate-x-5" : "translate-x-1"
+                              )}
+                            />
+                          </span>
                         </button>
                       </div>
                       <div className="mt-3 flex items-center justify-between gap-3">
@@ -293,20 +317,27 @@ export function Navbar() {
                           type="button"
                           role="switch"
                           aria-checked={highContrast}
-                          className={clsx(
-                            "relative inline-flex h-6 w-11 items-center rounded-full border transition",
-                            highContrast
-                              ? "border-brandOrange/30 bg-brandOrange"
-                              : "border-black/10 bg-black/20 dark:border-white/15 dark:bg-white/20"
-                          )}
-                          onClick={toggleHighContrast}
+                          className="inline-flex h-11 w-14 shrink-0 items-center justify-center rounded-xl transition hover:bg-black/5 dark:hover:bg-white/10"
+                          onClick={() => {
+                            toggleHighContrast();
+                            setMenuOpen(false);
+                          }}
                         >
                           <span
                             className={clsx(
-                              "inline-block h-5 w-5 rounded-full bg-white shadow-soft transition-transform",
-                              highContrast ? "translate-x-5" : "translate-x-1"
+                              "relative inline-flex h-6 w-11 items-center rounded-full border transition",
+                              highContrast
+                                ? "border-brandOrange/30 bg-brandOrange"
+                                : "border-black/10 bg-black/20 dark:border-white/15 dark:bg-white/20"
                             )}
-                          />
+                          >
+                            <span
+                              className={clsx(
+                                "inline-block h-5 w-5 rounded-full bg-white shadow-soft transition-transform",
+                                highContrast ? "translate-x-5" : "translate-x-1"
+                              )}
+                            />
+                          </span>
                         </button>
                       </div>
                     </div>
@@ -321,12 +352,15 @@ export function Navbar() {
                             key={size}
                             type="button"
                             className={clsx(
-                              "rounded-xl border px-3 py-2 text-sm font-semibold transition focus:outline-none focus:ring-2 focus:ring-brandOrange/40",
+                              "min-h-11 rounded-xl border px-3 py-2 text-sm font-semibold transition focus:outline-none focus:ring-2 focus:ring-brandOrange/40",
                               fontSize === size
                                 ? "border-brandOrange/40 bg-brandOrange text-white"
                                 : "border-black/10 bg-black/5 text-black/70 hover:bg-black/10 dark:border-white/10 dark:bg-white/5 dark:text-white/80 dark:hover:bg-white/10"
                             )}
-                            onClick={() => setFontSize(size)}
+                            onClick={() => {
+                              setFontSize(size);
+                              setMenuOpen(false);
+                            }}
                           >
                             {size === "sm" ? t("common.small") : size === "md" ? t("common.medium") : t("common.large")}
                           </button>
@@ -344,12 +378,15 @@ export function Navbar() {
                             key={nextLanguage}
                             type="button"
                             className={clsx(
-                              "rounded-xl border px-3 py-2 text-sm font-semibold transition focus:outline-none focus:ring-2 focus:ring-brandOrange/40",
+                              "min-h-11 rounded-xl border px-3 py-2 text-sm font-semibold transition focus:outline-none focus:ring-2 focus:ring-brandOrange/40",
                               language === nextLanguage
                                 ? "border-brandOrange/40 bg-brandOrange text-white"
                                 : "border-black/10 bg-black/5 text-black/70 hover:bg-black/10 dark:border-white/10 dark:bg-white/5 dark:text-white/80 dark:hover:bg-white/10"
                             )}
-                            onClick={() => void setLanguage(nextLanguage)}
+                            onClick={() => {
+                              setLanguage(nextLanguage);
+                              setMenuOpen(false);
+                            }}
                           >
                             {nextLanguage === "es" ? t("common.spanish") : t("common.english")}
                           </button>
@@ -364,7 +401,7 @@ export function Navbar() {
                         </div>
                         <button
                           type="button"
-                          className="btn-secondary mt-3 w-full justify-start"
+                          className="btn-secondary mt-3 min-h-11 w-full justify-start"
                           onClick={() => {
                             openPasswordModal();
                             setMenuOpen(false);
@@ -381,16 +418,16 @@ export function Navbar() {
             </div>
 
             {!token ? (
-              <div className="flex items-center gap-2">
+              <div className="hidden items-center gap-2 lg:flex">
                 <button
-                  className="btn-primary whitespace-nowrap"
+                  className="btn-primary min-h-11 whitespace-nowrap"
                   onClick={() => openAuthModal({ reason: t("auth.reasonDefault"), mode: "login" })}
                 >
                   <LogIn className="h-4 w-4" />
                   {t("nav.login")}
                 </button>
                 <button
-                  className="btn-secondary hidden whitespace-nowrap xl:inline-flex"
+                  className="btn-secondary hidden min-h-11 whitespace-nowrap xl:inline-flex"
                   onClick={() => openAuthModal({ reason: t("auth.reasonDefault"), mode: "register" })}
                 >
                   <UserPlus className="h-4 w-4" />
@@ -398,12 +435,12 @@ export function Navbar() {
                 </button>
               </div>
             ) : (
-              <div className="flex items-center gap-2">
+              <div className="hidden items-center gap-2 lg:flex">
                 <div className="max-w-[180px] truncate rounded-full bg-black/5 px-3 py-2 text-sm font-semibold text-black/70 dark:bg-white/5 dark:text-white/75">
                   {user?.name}
                 </div>
                 <button
-                  className="btn-secondary"
+                  className="btn-secondary min-h-11"
                   onClick={() => setLogoutConfirmOpen(true)}
                 >
                   <LogOut className="h-4 w-4" />
@@ -431,38 +468,123 @@ export function Navbar() {
       />
 
       {mobileNavOpen && (
-        <div className="lg:hidden">
-          <div ref={mobileNavRef} className="w-full px-3 pb-3">
-            <div className="w-full rounded-3xl border border-black/5 bg-white/95 p-3 shadow-soft dark:border-white/10 dark:bg-[#232222]/95">
-              <div className="grid gap-2">
-                <NavLink to="/" className={({ isActive }) => clsx(navClass({ isActive }), "w-full justify-start")}>
-                  <Home className="h-4 w-4" />
+        <div className="fixed left-1/2 top-[calc(var(--navbar-height,4rem)+0.5rem)] z-[45] w-[calc(100%-1rem)] max-w-md -translate-x-1/2 lg:hidden">
+          <div
+            ref={mobileNavRef}
+            role="menu"
+            className="max-h-[calc(100dvh-var(--navbar-height,4rem)-1rem)] w-full overflow-y-auto overscroll-contain rounded-3xl border border-black/5 bg-white/95 p-3 shadow-soft backdrop-blur-lg dark:border-white/10 dark:bg-[#232222]/95"
+          >
+              <div className="grid gap-2 text-center">
+                <NavLink
+                  to="/"
+                  className={({ isActive }) => clsx(navClass({ isActive }), "min-h-11 w-full justify-center text-center")}
+                  onClick={() => setMobileNavOpen(false)}
+                >
+                  <Home className="h-5 w-5" />
                   {t("nav.home")}
                 </NavLink>
                 <NavLink
                   to="/constitution"
-                  className={({ isActive }) => clsx(navClass({ isActive }), "w-full justify-start")}
+                  className={({ isActive }) => clsx(navClass({ isActive }), "min-h-11 w-full justify-center text-center")}
+                  onClick={() => setMobileNavOpen(false)}
                 >
-                  <BookOpen className="h-4 w-4" />
+                  <BookOpen className="h-5 w-5" />
                   {t("nav.constitution")}
                 </NavLink>
-                <NavLink to="/chatbot" className={({ isActive }) => clsx(navClass({ isActive }), "w-full justify-start")}>
-                  <MessageSquare className="h-4 w-4" />
+                <NavLink
+                  to="/chatbot"
+                  className={({ isActive }) => clsx(navClass({ isActive }), "min-h-11 w-full justify-center text-center")}
+                  onClick={() => setMobileNavOpen(false)}
+                >
+                  <MessageSquare className="h-5 w-5" />
                   {t("nav.chatbot")}
                 </NavLink>
                 <NavLink
                   to="/favorites"
-                  className={({ isActive }) => clsx(navClass({ isActive }), "w-full justify-start")}
+                  className={({ isActive }) => clsx(navClass({ isActive }), "min-h-11 w-full justify-center text-center")}
+                  onClick={() => setMobileNavOpen(false)}
                 >
-                  <Heart className="h-4 w-4" />
+                  <Heart className="h-5 w-5" />
                   {t("nav.favorites")}
                 </NavLink>
-                <NavLink to="/about" className={({ isActive }) => clsx(navClass({ isActive }), "w-full justify-start")}>
-                  <Info className="h-4 w-4" />
+                <NavLink
+                  to="/about"
+                  className={({ isActive }) => clsx(navClass({ isActive }), "min-h-11 w-full justify-center text-center")}
+                  onClick={() => setMobileNavOpen(false)}
+                >
+                  <Info className="h-5 w-5" />
                   {t("nav.about")}
                 </NavLink>
               </div>
-            </div>
+
+              <div className="my-3 h-px bg-black/5 dark:bg-white/10" />
+
+              <button
+                type="button"
+                className="btn-secondary min-h-11 w-full justify-center text-center"
+                onClick={() => {
+                  setMobileNavOpen(false);
+                  setMenuOpen(true);
+                }}
+              >
+                <Settings className="h-5 w-5" />
+                {t("nav.accessibility")}
+              </button>
+
+              {!token ? (
+                <div className="mt-2 grid gap-2 sm:grid-cols-2">
+                  <button
+                    type="button"
+                    className="btn-primary min-h-11 w-full"
+                    onClick={() => {
+                      setMobileNavOpen(false);
+                      openAuthModal({ reason: t("auth.reasonDefault"), mode: "login" });
+                    }}
+                  >
+                    <LogIn className="h-5 w-5" />
+                    {t("nav.login")}
+                  </button>
+                  <button
+                    type="button"
+                    className="btn-secondary min-h-11 w-full"
+                    onClick={() => {
+                      setMobileNavOpen(false);
+                      openAuthModal({ reason: t("auth.reasonDefault"), mode: "register" });
+                    }}
+                  >
+                    <UserPlus className="h-5 w-5" />
+                    {t("auth.registerTitle")}
+                  </button>
+                </div>
+              ) : (
+                <div className="mt-2 grid gap-2 text-center">
+                  <div className="truncate rounded-xl bg-black/5 px-3 py-3 text-sm font-semibold text-black/70 dark:bg-white/5 dark:text-white/75">
+                    {user?.name}
+                  </div>
+                  <button
+                    type="button"
+                    className="btn-secondary min-h-11 w-full"
+                    onClick={() => {
+                      setMobileNavOpen(false);
+                      openPasswordModal();
+                    }}
+                  >
+                    <UserCog className="h-5 w-5" />
+                    {t("auth.changePasswordTitle")}
+                  </button>
+                  <button
+                    type="button"
+                    className="btn-secondary min-h-11 w-full"
+                    onClick={() => {
+                      setMobileNavOpen(false);
+                      setLogoutConfirmOpen(true);
+                    }}
+                  >
+                    <LogOut className="h-5 w-5" />
+                    {t("nav.logout")}
+                  </button>
+                </div>
+              )}
           </div>
         </div>
       )}

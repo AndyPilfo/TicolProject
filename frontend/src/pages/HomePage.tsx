@@ -11,7 +11,7 @@ export function HomePage() {
 
   const stats = [
     { label: t("home.statsArticles"), value: "197" },
-    { label: t("home.statsReady"), value: "AI" },
+    { label: t("home.statsReady"), value: "Loki" },
     { label: t("home.statsSafe"), value: "100%" }
   ];
 

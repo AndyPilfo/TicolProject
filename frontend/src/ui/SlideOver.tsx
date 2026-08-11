@@ -11,7 +11,7 @@ type SlideOverProps = {
   widthClassName?: string;
 };
 
-export function SlideOver({ open, title, onClose, children, widthClassName = "w-[92vw] max-w-md" }: SlideOverProps) {
+export function SlideOver({ open, title, onClose, children, widthClassName = "w-full max-w-md" }: SlideOverProps) {
   const { t } = useI18n();
   const titleId = useId();
   const panelRef = useRef<HTMLDivElement | null>(null);
@@ -40,7 +40,7 @@ export function SlideOver({ open, title, onClose, children, widthClassName = "w-
         onClick={onClose}
         aria-label={t("common.closePanel")}
       />
-      <div className="absolute inset-y-0 right-0 flex justify-end p-3 sm:p-4">
+      <div className="absolute inset-0 flex justify-end p-2 sm:p-4">
         <div
           ref={panelRef}
           role="dialog"
@@ -61,7 +61,7 @@ export function SlideOver({ open, title, onClose, children, widthClassName = "w-
             </div>
             <button
               type="button"
-              className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/20 bg-white/10 text-white transition hover:bg-white/20 focus:outline-none focus:ring-2 focus:ring-white/40"
+              className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/20 bg-white/10 text-white transition hover:bg-white/20 focus:outline-none focus:ring-2 focus:ring-white/40"
               onClick={onClose}
               aria-label={t("common.closePanel")}
             >

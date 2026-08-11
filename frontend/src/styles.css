@@ -16,15 +16,40 @@
     font-feature-settings: "ss01" 1, "ss02" 1;
     text-rendering: optimizeLegibility;
     scroll-behavior: smooth;
+    width: 100%;
+    max-width: 100%;
   }
 
   body {
+    width: 100%;
+    max-width: 100%;
     min-height: 100vh;
     background: transparent;
     color: var(--text-light);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     overflow-x: clip;
+  }
+
+  #root {
+    width: 100%;
+    max-width: 100%;
+    min-height: 100vh;
+    overflow-x: clip;
+  }
+
+  main,
+  header,
+  footer {
+    min-width: 0;
+    max-width: 100%;
+  }
+
+  button,
+  input,
+  select,
+  textarea {
+    min-width: 0;
   }
 
   ::selection {
@@ -63,6 +88,7 @@
   .ticol-container {
     width: calc(100% - 2rem);
     max-width: 1720px;
+    min-width: 0;
     margin-inline: auto;
   }
 
@@ -85,7 +111,7 @@
   }
 
   .card {
-    @apply rounded-3xl border border-black/5 bg-white/80 shadow-soft backdrop-blur dark:border-white/10 dark:bg-white/5;
+    @apply min-w-0 rounded-3xl border border-black/5 bg-white/80 shadow-soft backdrop-blur dark:border-white/10 dark:bg-white/5;
   }
 
   .btn {
